@@ -2,10 +2,17 @@ package com.garotinho.course.entities;
 
 import java.io.Serializable;
 
-public class User implements Serializable{ // Serializable : se transforma em cadeia de bytes para trafegar em diversos meios;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+
+@Entity public class User implements Serializable{ // Serializable : se transforma em cadeia de bytes para trafegar em diversos meios;
+    
     private static final long serialVersionUID = 1L;
-    private Long id;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; // PK++
     private String name;
     private String email;
     private String fone;
