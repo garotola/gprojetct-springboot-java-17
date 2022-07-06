@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.garotinho.course.entities.Category;
 import com.garotinho.course.entities.Order;
 import com.garotinho.course.entities.User;
 import com.garotinho.course.entities.enums.OrderStatus;
+import com.garotinho.course.repositories.CategoryRepository;
 import com.garotinho.course.repositories.OrderRepository;
 import com.garotinho.course.repositories.UserRepository;
 
@@ -19,9 +21,8 @@ public class TestConfig implements CommandLineRunner{ //Interface que executa co
     //Injeção de dep
     @Autowired // Coloca uma instancia de userRepository automaticamente
     private UserRepository userRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-
+    @Autowired private OrderRepository orderRepository;
+    @Autowired private CategoryRepository categoryRepository;
     @Override
     public void run(String... args) throws Exception {
         
@@ -32,6 +33,11 @@ public class TestConfig implements CommandLineRunner{ //Interface que executa co
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2, OrderStatus.WAITING_PAYMENT);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u1, OrderStatus.WAITING_PAYMENT);
 
+        Category c1 = new Category(null, "Eletronicos");
+        Category c2 = new Category(null, "Livros");
+        Category c3 = new Category(null, "Computadores");
+
+        categoryRepository.saveAll(Arrays.asList(c1,c2,c3));
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
 
