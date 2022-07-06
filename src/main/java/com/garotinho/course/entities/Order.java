@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 // Um cliente pode ter varios pedidos
 // Um pedido ta pra apenas um cliente.
 
@@ -25,7 +27,7 @@ public class Order implements Serializable{
     @ManyToOne
     @JoinColumn(name = "client_id") // Criando Chave Estrangeira 
     private User client;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant instant;
     
     
