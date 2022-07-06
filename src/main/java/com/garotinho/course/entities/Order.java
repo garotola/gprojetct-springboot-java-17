@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.garotinho.course.entities.enums.OrderStatus;
 
 // Um cliente pode ter varios pedidos
 // Um pedido ta pra apenas um cliente.
@@ -29,13 +30,14 @@ public class Order implements Serializable{
     private User client;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant instant;
-    
+    private Integer orderStatus;
     
     public Order(){}
-    public Order(Long id, Instant instant, User client){
+    public Order(Long id, Instant instant, User client, OrderStatus orderStatus){
         this.id = id;
         this.instant = instant;
         this.client = client;
+        setOrderStatus(orderStatus);
     }
 
     public Long getId() {
@@ -62,4 +64,10 @@ public class Order implements Serializable{
         this.instant = instant;
     }
 
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if(orderStatus != null) this.orderStatus = orderStatus.getCode();
+    }
 }
