@@ -1,14 +1,20 @@
 package com.garotinho.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
-@Entity public class User implements Serializable{ // Serializable : se transforma em cadeia de bytes para trafegar em diversos meios;
+@Entity 
+@Table(name = "tb_user")
+public class User implements Serializable{ // Serializable : se transforma em cadeia de bytes para trafegar em diversos meios;
     
     private static final long serialVersionUID = 1L;
 
@@ -17,6 +23,9 @@ import javax.persistence.Id;
     private String email;
     private String fone;
     private String password;
+    
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public User(){}
     public User(Long id, String name, String email, String fone, String password){
@@ -51,6 +60,11 @@ import javax.persistence.Id;
             return false;
         return true;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     /**
      * @return Long return the id
      */
