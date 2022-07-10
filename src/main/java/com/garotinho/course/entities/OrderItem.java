@@ -94,4 +94,8 @@ public class OrderItem implements Serializable{
         return id.getProduct();
     }
     
+    public double getSubTotal() {
+        return quantity * price;
+    }
+
 }

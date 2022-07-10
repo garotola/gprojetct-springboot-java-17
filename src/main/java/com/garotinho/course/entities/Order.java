@@ -121,4 +121,11 @@ public class Order implements Serializable{
         this.payment = payment;
     }
 
+    public double getTotal(){
+        double result = 0.0;
+        for(OrderItem orderItem : items) {
+            result += orderItem.getSubTotal();
+        }
+        return result;
+    }
 }
