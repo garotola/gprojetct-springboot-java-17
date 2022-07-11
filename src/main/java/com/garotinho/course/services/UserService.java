@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.garotinho.course.entities.User;
 import com.garotinho.course.repositories.UserRepository;
-import com.garotinho.course.resources.exceptions.StandardError;
 import com.garotinho.course.services.exceptions.ResourceNotFoundException;
 
 
