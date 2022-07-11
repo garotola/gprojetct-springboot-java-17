@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.garotinho.course.entities.User;
 import com.garotinho.course.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -48,6 +49,11 @@ public class UserResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
+        User updatedUser = service.update(id, user);
+        return ResponseEntity.ok().body(updatedUser);
+    }
     //PathVariable - Variavel da Url
     //RequestBody - variavel do corpo da requisicao
 }
